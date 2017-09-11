@@ -7,7 +7,7 @@ using EventStore.ClientAPI.SystemData;
 using Newtonsoft.Json;
 using Webjobs.Extensions.Eventstore.Sample;
 
-namespace EventsEmiter
+namespace EventsEmitter
 {
     class Program
     {
