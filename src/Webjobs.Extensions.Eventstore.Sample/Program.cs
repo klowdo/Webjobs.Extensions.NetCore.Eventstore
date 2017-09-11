@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using EventStore.ClientAPI;
-using Microsoft.Azure;
 using Microsoft.Azure.WebJobs;
 using SimpleInjector;
-using SimpleInjector.Extensions.LifetimeScoping;
 using SimpleInjector.Lifestyles;
 using Webjobs.Extensions.NetCore.Eventstore;
 
