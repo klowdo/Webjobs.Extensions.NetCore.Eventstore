@@ -21,14 +21,14 @@ namespace Webjobs.Extensions.Eventstore.Sample
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new ThreadScopedLifestyle();
             InitíalizeContainer(container);
-
+           
             using (ThreadScopedLifestyle.BeginScope(container))
             {
                 config.UseEventStore(new EventStoreConfig
                 {
-                    ConnectionString = ConfigurationManager.AppSettings["EventStoreConnectionString"],
-                    Username = ConfigurationManager.AppSettings["EventStoreAdminUser"],
-                    Password = ConfigurationManager.AppSettings["EventStoreAdminPassword"],
+                    ConnectionString = "ConnectTo=tcp://localhost:1113;HeartbeatTimeout=20000",
+                    Username = "admin",
+                    Password = "changeit",
                     LastPosition = new Position(0,0),
                     MaxLiveQueueSize = 500
                 });
@@ -36,8 +36,8 @@ namespace Webjobs.Extensions.Eventstore.Sample
 
             var jobActivator = new SimpleInjectorJobActivator(container);
             config.JobActivator = jobActivator;
-            config.DashboardConnectionString = ConfigurationManager.AppSettings["AzureWebJobsDashboard"];
-            config.StorageConnectionString = ConfigurationManager.AppSettings["AzureWebJobsStorage"];
+            //config.DashboardConnectionString = ConfigurationManager.ConnectionStrings["AzureWebJobsDashboard"].ConnectionString;
+            //config.StorageConnectionString = ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ConnectionString;
             var host = new JobHost(config);
             host.RunAndBlock();
         }
